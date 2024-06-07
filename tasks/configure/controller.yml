@@ -42,6 +42,7 @@
     - name: create k0s controller service with install command
       k0s_install:
         state: controller
+        enable_worker: "{{ k0s_worker_on_controller | bool }}"
         force: "{{ k0s_force }}"
         debug: "{{ k0s_debug | default(omit) }}"
         verbose: "{{ k0s_verbose | default(omit) }}"
