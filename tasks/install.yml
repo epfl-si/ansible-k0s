@@ -57,6 +57,7 @@
 - name: install and activate k0s
   when:
     - (stat_k0s_binary.stat is defined and not stat_k0s_binary.stat.exists | default('false')) or
+      (not stat_k0s_activated.stat.exists) or
       not stat_k0s_activated.stat | bodsch.core.linked_version(k0s_install_path, k0s_version)
   block:
     - name: propagate files
