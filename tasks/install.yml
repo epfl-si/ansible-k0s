@@ -37,6 +37,8 @@
   register: stat_file_binary
 
 - name: fail when extracted binary are missing
+  delegate_to: "{{ k0s_delegate_to }}"
+  run_once: "{{ 'false' if k0s_direct_download else 'true' }}"
   ansible.builtin.fail:
     msg: "missing extracted binary on ansible controller"
   when:
